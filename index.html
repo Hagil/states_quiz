@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.js"></script>
+    <title>States Quiz</title>
+</head>
+
+<body ng-app="states_iq">
+    <div ng-controller="data_stuff">
+        <h1>States IQ Results</h1>
+        <form>
+                <input type="text" placeholder="id" ng-model="student_id">
+                <input type="text" placeholder="name" ng-model="student_name">
+                <input type="text" placeholder="gender" ng-model="student_gender">
+                <input type="text" placeholder="score" ng-model="student_score">
+                <select ng-model="student_state" ng-options="student.state for student in students | unique:'state'">
+                    <option value="">Select state</option>
+                </select>
+                <button class="btn btn-primary" ng-click="addStudent()">add student</button>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>gender</th>
+                    <th>score</th>
+                    <th>state</th>
+                    <th>needs help?</th>
+                    <th>bumped up score</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="student in students">
+                <td>{{student.id}}</td>
+                <td>{{student.name}}</td>
+                <td>Male <input type="radio" value="Male" ng-model="student.gender"> Female <input type="radio" value="Female" ng-model="student.gender"></td>
+                <td>{{student.score}}</td>
+                <td>{{student.state}}</td>
+                <td><button class="btn btn-danger" ng-click="bumpScore()">NEEDS HELP</button></td>
+                <td></td>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
